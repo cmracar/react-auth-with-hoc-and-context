@@ -1,4 +1,4 @@
-An example of using User Authorization with React HOC.
+An example of using Authorization with using High Order Component & Context
 
 In the project directory, you can run:
 
