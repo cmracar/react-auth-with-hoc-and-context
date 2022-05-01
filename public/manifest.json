@@ -1,0 +1,9 @@
+{
+  "short_name": "React Auth with HOC",
+  "name": "React Authorization with High Order Component",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
