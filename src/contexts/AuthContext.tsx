@@ -25,22 +25,26 @@ export const AuthProvider = ({ children }: { children: ReactNode }): JSX.Element
 
     const login = (username: string, password: string) => {
         setLoading(true)
-        console.log("Login process");
-        setUser({
-            username: username,
-            password: password
-        })
-        setLoading(false)
+        setTimeout(() => {
+            console.log("Login process");
+            setUser({
+                username: username,
+                password: password
+            })
+            setLoading(false)
+        }, 5000);
     }
 
     const signUp = (username: string, email: string, password: string) => {
         setLoading(true)
-        console.log("Sign Up process");
-        setUser({
-            username: username,
-            password: password
-        })
-        setLoading(false)
+        setTimeout(() => {
+            console.log("Sign Up process");
+            setUser({
+                username: username,
+                password: password
+            })
+            setLoading(false)
+        }, 5000);
     }
 
     const logout = () => {
@@ -66,7 +70,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }): JSX.Element
 
     return (
         <AuthContext.Provider value={values}>
-            {!loading && children}
+            {loading ?
+                <div className="loading-text">
+                    <div>Sayfa Yükleniyor...</div>
+                </div>
+                :
+                children
+            }
         </AuthContext.Provider>
     );
 }
