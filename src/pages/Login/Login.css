@@ -33,9 +33,10 @@
     border: none;
     margin: 5px 10px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
-.form button:active {
+.form button:hover {
     background-color: rgb(82, 20, 139);
 }
 
