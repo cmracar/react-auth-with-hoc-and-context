@@ -1,5 +1,8 @@
-.dasboard-box {
-    width: 100%;
-    margin-top: 100px;
-    text-align: center;
+.dashboard-box {
+    padding: 10px 45px;
+}
+
+.logout-button {
+    cursor: pointer;
+    font-weight: bold;
 }

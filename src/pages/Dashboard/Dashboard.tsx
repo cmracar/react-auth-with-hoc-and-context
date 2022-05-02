@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import withAuth from "../../components/HOC/withAuth";
+import { useAuth } from "../../contexts/AuthContext";
+import "./Dashboard.css";
 
 type Response = {
     data: ExampleData[]
@@ -20,6 +22,7 @@ type ExampleData = {
 const Dashboard = () => {
 
     const [response, setResponse] = useState<Response>();
+    const { user, logout } = useAuth();
 
     useEffect(() => {
         getData()
@@ -34,7 +37,8 @@ const Dashboard = () => {
         <>
             <div className="dashboard-box">
                 <h3>Dashboard</h3>
-                <p>This area is private.</p>
+                <p>This area is private. You are logged as <b>{user?.username}</b></p>
+                <p>You can log out here {`-->`} <a className="logout-button" onClick={() => logout()}>Logout</a></p>
                 <div>
                     {response?.data.map((item:ExampleData, id:number) =>
                         <p key={id}>
