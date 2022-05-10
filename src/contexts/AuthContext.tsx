@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect, ReactNode } from "react";
+import { useNavigate } from 'react-router-dom';
 
 export interface User {
     username?: string | undefined;
@@ -23,6 +24,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }): JSX.Element
     const [user, setUser] = useState<User | undefined>(undefined);
     const [loading, setLoading] = useState<boolean>(false);
 
+    const navigate = useNavigate();
+
     const login = (username: string, password: string) => {
         setLoading(true)
         setTimeout(() => {
@@ -31,6 +34,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }): JSX.Element
                 username: username,
                 password: password
             })
+            navigate("/dashboard");
             setLoading(false)
         }, 5000);
     }
@@ -43,6 +47,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }): JSX.Element
                 username: username,
                 password: password
             })
+            navigate("/dashboard");
             setLoading(false)
         }, 5000);
     }
@@ -50,10 +55,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }): JSX.Element
     const logout = () => {
         console.log("Logout process");
         setUser(undefined);
+        navigate("/login");
     }
 
     useEffect(() => {
-        if (user) {
+        if (user !== undefined) {
             setUser(user);
         } else {
             setUser(undefined);

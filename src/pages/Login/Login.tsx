@@ -1,13 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth, User } from "../../contexts/AuthContext";
 import "./Login.css";
-
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const { user, login } = useAuth();
+    const navigate = useNavigate();
 
-    const { login } = useAuth();
+    const [formData, setFormData] = useState<User | undefined>(undefined);
 
-    const [formData, setFormData] = useState<User |undefined>(undefined);
+    useEffect(() => {
+        if (user !== undefined) {  // There is no cookie so if you refresh the page to go login page, user data will delete.
+            navigate("/dashboard");
+        }
+    }, []);
 
     const handleLogin = () => {
         if (formData?.username && formData?.password) {
@@ -29,6 +35,7 @@ const Login = () => {
                     </div>
                 </div>
             </div>
+
         </>
     );
 }
